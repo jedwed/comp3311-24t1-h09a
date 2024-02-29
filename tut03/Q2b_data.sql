@@ -40,12 +40,12 @@ insert into Teaches values (4, 'COMP3311', '24T1');
 -- ;
 
 -- A query that returns all subjects that this mysterious Edward person teaches
--- create or replace view edwardteaches(subjectcode, name)
+-- create or replace view EdwardTeaches(subjectCode, name)
 -- as
--- select s.subjectcode, s.name, ts.semester
--- from subject as s
--- join teaches as ts on s.subjectcode = ts.subjectcode
--- join teacher as t on ts.staffno = t.staffno
--- where namefirst = 'edward' and namelast = 'qian'
+-- select S.subjectCode, S.name, TS.semester
+-- from Subject as S
+-- join Teaches as TS on S.subjectCode = TS.subjectCode
+-- join Teacher as T on TS.staffNo = T.staffNo
+-- where nameFirst = 'Edward' and nameLast = 'Qian'
 -- ;
-
+--
