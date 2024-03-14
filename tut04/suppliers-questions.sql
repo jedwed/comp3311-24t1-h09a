@@ -45,3 +45,26 @@ where not exists (
     except
     select C.pid from Catalog as C where C.sid = S.sid
 )
+
+/*
+ * Q22
+ * Find the pids of the most expensive part(s) supplied by suppliers named "Yosemite Sham".
+ */
+
+ -- Finding pids supplied by "Yosemite Sham"
+create view YosemiteSupplies (pids, cost)
+as
+select C.pid, C.cost
+from Catalog as C
+join Suppliers as S on C.sid = S.sid
+where S.sname = 'Yosemite Sham'
+;
+ -- find the most expensive part out of the above
+select pids
+from YosemiteSupplies
+-- order by cost desc
+-- limit 1;
+where cost = (
+    select max(cost) from YosemiteSupplies
+);
+--

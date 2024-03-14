@@ -1,0 +1,6 @@
+Beers(name:string, manufacturer:string)
+Bars(name:string, address:string, license#:integer)
+Drinkers(name:string, address:string, phone:string)
+Likes(drinker:string, beer:string)
+Sells(bar:string, beer:string, price:real)
+Frequents(drinker:string, bar:string)
