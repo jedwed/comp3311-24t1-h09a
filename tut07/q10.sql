@@ -73,5 +73,3 @@ insert into Student values (2, 'Daniel Jacobs');
 --     )
 -- );
 
--- a trigger that increments numStudents for every single enrollment
-
