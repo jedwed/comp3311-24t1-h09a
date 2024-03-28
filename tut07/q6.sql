@@ -15,7 +15,9 @@ begin
     if new.a is null or new.b is null then
         raise exception 'Error: Primary key cannot be null';
     end if;
-    if TG_OP = 'UPDATE' then
+    -- SOMETHING I MISSED DURING THE TUTORIAL:
+    -- We only return early if the update doesn't change an a or b attribute
+    if TG_OP = 'UPDATE' and old.a = new.a and old.b = new.b then
         return new;
     end if;
     -- primary key is unique
