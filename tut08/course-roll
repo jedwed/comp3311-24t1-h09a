@@ -1,0 +1,66 @@
+#!/usr/bin/python3
+import sys
+import psycopg2
+
+conn = None
+if len(sys.argv) < 3:
+    print("Usage: course-roll subject term")
+    exit(1)
+
+subject = sys.argv[1]
+term = sys.argv[2]
+
+subject_query = """
+select *
+from Subjects
+where code = %s
+"""
+
+term_query = """
+select *
+from Terms
+where code = %s
+"""
+
+students_query = """
+select p.id, p.family, p.given
+from People p
+join Students stu on p.id = stu.id
+join Course_enrolments ce on stu.id = ce.student
+join Courses c on ce.course = c.id
+join Subjects s on c.subject = s.id
+where c.subject = %s and c.term = %s
+order by p.family, p.given
+"""
+
+try:
+    conn = psycopg2.connect(f"dbname=uni")
+    cur = conn.cursor()
+
+    # TODO: subject is invalid
+    cur.execute(subject_query, (subject,))
+    subject_tuple = cur.fetchone()
+    if subject_tuple is None:
+        print(f"Invalid subject {subject}")
+        exit(0)
+    subject_id = subject_tuple[0]
+
+    cur.execute(term_query, (term,))
+    term_tuple = cur.fetchone()
+    if not term_tuple:
+        print(f"Invalid term {term}")
+        exit(0)
+    term_id = term_tuple[0]
+
+    cur.execute(students_query, (subject_id, term_id))
+    students = cur.fetchall()
+    if len(students) == 0:
+        print("No students")
+        exit(0)
+    for id, family, given in students:
+        print(f"{id} {family}, {given}")
+except psycopg2.Error as err:
+    print("database error: ", err)
+finally:
+    if conn is not None:
+        conn.close()

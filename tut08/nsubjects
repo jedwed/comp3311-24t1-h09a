@@ -1,0 +1,47 @@
+#!/usr/bin/python3
+import sys
+import psycopg2
+
+conn = None
+if len(sys.argv) < 2:
+    print("Usage: nsubjects school_pattern")
+    exit(1)
+
+school_pattern = sys.argv[1]
+
+schools_query = """
+select id, longname 
+from Orgunits 
+where longname ~* %s;
+"""
+
+num_subjects_query = """
+select count(*)
+from Subjects s
+join OrgUnits o on s.offeredby = o.id
+where o.id = %s
+"""
+
+
+try:
+    conn = psycopg2.connect(f"dbname=uni")
+    cur = conn.cursor()
+    cur.execute(schools_query, (school_pattern,))
+
+    schools = cur.fetchall()
+    if len(schools) == 0:
+        print("No matching schools")
+    elif len(schools) > 1:
+        print("Multiple schools match")
+        for school in schools:
+            print(school[1])
+    else:
+        school_id, school_name = schools[0]
+        cur.execute(num_subjects_query, (school_id,))
+        res = cur.fetchone()
+        print(f"School of Computer Science and Engineering teaches {res[0]} subjects")
+except psycopg2.Error as err:
+    print("database error: ", err)
+finally:
+    if conn is not None:
+        conn.close()
