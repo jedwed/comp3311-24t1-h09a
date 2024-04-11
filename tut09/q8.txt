@@ -1,0 +1,53 @@
+Consider (yet another) banking application that contains information about 
+accounts, branches and customers.
+Each account is held at a specific branch,
+but a customer may hold more than one account 
+and an account may have more than one associated customer.
+
+Consider an unnormalised relation containing all of the attributes that are relevant to this application:
+
+- acct# - unique account indentifier
+- branch# - unique branch identifier
+- tfn - unique customer identifier (tax file number)
+- kind - type of account (savings, cheque, ...)
+- balance - amount of money in account
+- city - city where branch is located
+- name - customer's name
+
+i.e. consider the relation R(acct#, branch#, tfn, kind, balance, city, name)
+
+Based on the above description:
+
+a. 
+Devise a suitable set of functional dependencies among these attributes.
+
+- tfn -> name
+- branch# -> city
+- acct# -> balance, kind, branch#
+
+b. 
+Using these functional dependencies, decompose R into a set of 3NF relations.
+
+1. Compute minimal cover (functional depedencies in Q1 already form the minimal cover)
+2. Create relation for each functional dependencies in minimal cover:
+
+Person(tfn, name)
+Branches(branch#, city)
+Accounts(acct#, balance, kind, branch#)
+
+3. Check if we need to add a candidate key
+
+(acct#, tfn) = {tfn, name, acct#, balance, kind, branch#, city}
+None of the new relations contains a candidate key
+Add new relation 
+PersonOwnsAccount(acct#, tfn)
+
+Final 3NF schema
+Person(tfn, name)
+Branches(branch#, city)
+Accounts(acct#, balance, kind, branch#)
+PersonOwnsAccount(acct#, tfn)
+
+c. 
+State whether the new relations are also in BCNF.
+Oop didn't get to this in tutorial: exercise for reader :)

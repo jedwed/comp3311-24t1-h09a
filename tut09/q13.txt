@@ -1,0 +1,2 @@
+Q: Compute a minimal cover for:
+F = { B → A, D → A, AB → D }

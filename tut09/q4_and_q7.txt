@@ -1,0 +1,22 @@
+## Question 4
+
+Consider a relation R(A,B,C,D).
+For each of the following sets of functional dependencies,
+assuming that those are the only dependencies that hold for R, do the following:
+
+a. List all of the candidate keys for R.
+b. Show whether R is in Boyce-Codd normal form (BCNF)?
+c. Show whether R is in third normal form (3NF)?
+
+i. C → D, C → A, B → C
+ii. B → C, D → A
+iii. ABC → D, D → A
+iv. A → B, BC → D, A → C
+v. AB → C, AB → D, C → A, D → B
+vi. A → BCD
+
+## Question 7
+
+For each of the sets of dependencies in question 4:
+if R is not already in 3NF, decompose it into a set of 3NF relations
+if R is not already in BCNF, decompose it into a set of BCNF relations

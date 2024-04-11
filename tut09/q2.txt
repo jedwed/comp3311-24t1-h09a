@@ -1,0 +1,20 @@
+Consider the relation R(A,B,C,D,E,F,G) and
+the set of functional dependencies F = { A → B, BC → F, BD → EG, AD → C, D → F, BEG → FA }.
+Compute the following:
+
+- A+ 
+
+First step: initialise closure to be {A}
+Using A -> B, A exists in current closure so add B to closure: {A, B}
+Using BC -> F, BC doesn't exist in current closure, so continue
+...
+Final closure: {A, B}
+
+
+- ACEG+ 
+
+First step: initialise current closure to {A, C, E, G}
+Using A -> B, add B to closure {A, C, E, G, B}
+Using BC -> F, add F to closure {A, C, E, G, B, F}
+Final closure: {A, C, E, G, B, F}
+

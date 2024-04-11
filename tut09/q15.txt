@@ -1,0 +1,46 @@
+R  =  ABCDEFGH
+F  =  { ABH → C,  A → DE,  BGH → F,  F → ADH,  BH → GE }
+
+BCNF decomposition
+
+1st Pass
+Decomposing Relation R with fds = { ABH → C,  A → DE,  BGH → F,  F → ADH,  BH → GE }
+ABH -> C
+- Not trivial
+- ABH+ = {A, B, H, C, D, E, G, F}, ABH is a superkey
+This functional dependency meets the requirements
+A -> DE
+- Not trivial
+- A+ = {A, D, E}, A is not a superkey
+Hence, violates the requirements
+Decompose R into 
+- R1(ABCFGH), fds = { ABH -> C, BGH -> F, F -> AH, BH -> GE} 
+(Note, A -> DE is removed since attributes D and E no longer exist
+F -> ADH becomes F -> AH since attribute D no longer exists)
+- R2(ADE), fds = {A -> DE}
+
+Decomposing Relation R1(ABCFGH) with fds = { ABH → C, BGH → F, F -> AH, BH → GE } 
+ABH -> C meets the conditions shown above
+BGH -> F
+- Not trivial
+- BGH+ = {B, G, H, F, A, H, E, C}, BGH is a superkey
+Meets requirements
+F -> AH
+- Not trivial
+- F+ = {F, A, H}, F is not a superkey
+Hence, violates the requirements
+Decompose R1 into
+R3(BCFG) with fds = {}
+R4(FAH) with fds = {F -> AH}
+
+Relation R2 is in BCNF because for its functional dependency A -> DE, A is a superkey (A+ = {A, D, E})
+Relation R3 is in BCNF because there are no remaining functional dependencies
+Relation R4 is in BCNF because for its functional dependency F -> AH, F is a superkey (F+ = {F, A, H})
+
+Thus, the BCNF composition of R gives tables with attributes: ADE, BCFG, FAH
+
+
+
+
+
+

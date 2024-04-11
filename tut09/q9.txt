@@ -1,0 +1,17 @@
+Consider a schema representing projects within a company, containing the following information:
+
+- pNum - project's unique identifying number
+- pName - name of project
+- eNum - employee's unique identifying number
+- eName - name of employee
+- jobClass - type of job that employee has on this project
+- payRate - hourly rate, dependent on the kind of job being done
+- hours - total hours worked in this job by this employee
+
+This schema started out life as a large spreadsheet and now the company wants to put it into a database system.
+As a spreadsheet, its schema is: R(pNum, pName, eNum, eName, jobClass, payRate, hours)
+
+Based on the above description:
+a. Devise a suitable set of functional dependencies among these attributes.
+b. Using these functional dependencies, decompose R into a set of BCNF relations.
+c. State whether the new relations are also in 3NF.

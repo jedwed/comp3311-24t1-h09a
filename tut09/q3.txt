@@ -1,0 +1,55 @@
+Consider the relation R(A,B,C,D,E) and
+the set of functional dependencies F = { A → B, BC → E, ED → A }
+
+a. 
+List candidate keys of R
+ABCDE
+
+A+ = {A, B} missing attribute C D and E
+BC+ = {B, C, E} missing attribute A and D
+ED+ = {E, D, A, B} missing attribute C
+
+ACD+ = {A, B, C, D, E}
+
+BCD+ = {B, C, E, D, A}
+BCD is candidate key
+
+EDC = {E, D, A, B, C} 
+EDC is a superkey
+EDC is a candidate key
+
+ACD, BCD and CDE
+
+b. 
+Is R in third normal form (3NF)?
+R(A,B,C,D,E)
+F = { A → B, BC → E, ED → A }
+
+A -> B
+- Not trivial
+- A is not a superkey
+- B is part of candidate key BCD
+
+BC -> E
+- Not trivial
+- BC is not a superkey
+- E is part of candidate key CDE
+
+ED -> A 
+- Not trivial
+- ED is not a superkey
+- A is part of candidate key ACD
+
+Relation R is in 3NF
+
+c. 
+Is R in Boyce-Codd normal form (BCNF)?
+R(A,B,C,D,E)
+F = { A → B, BC → E, ED → A }
+
+A -> B
+- Not trivial
+- A is not a superkey
+
+Hence relation R is not in BCNF
+
