@@ -1,2 +1,9 @@
 Q: Compute a minimal cover for:
 F = { B → A, D → A, AB → D }
+
+AB -> D
+B -> A
+BB -> AB
+B -> AB
+B -> D (via transitivity)
+
