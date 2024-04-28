@@ -116,6 +116,7 @@ Conflicting operations: Consider two consecutive operations to a resource X acro
 - T1: R(X), T2: W(X) does conflict, since swapping the order of execution and having T2 write to X first would cause T1 to read a different value of X
 - T1: W(X), T2: R(X) conflicts for the same reason as above
 - T1: W(X), T2: W(X) does conflict, since swapping the order of execution means the final version of X would change
+
 To check: build a precedence graph: a node for each transaction and an edge for each conflicting pair. A cycle in the graph means the schedule is **not** conflict serializable.
 
 #### 2. View Serializable
