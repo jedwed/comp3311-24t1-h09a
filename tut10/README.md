@@ -74,6 +74,7 @@ T2 is Bob's transaction
 |                    | B = B - 500, W(B) | 2500                             |
 
 T1: R(B) W(B)
+
 T2:           R(B) W(B)
 
 The above schedule is a **Serial schedule**
@@ -94,6 +95,7 @@ However, interleaving schedules are **potentially dangerous**. Consider the foll
 |                    | B = B - 500, W(B) | 500                              |
 
 T1: R(B)      W(B)
+
 T2:      R(B)      W(B)
 
 This caused the balance to be $500! This is because Bob's withdrawal transaction 
