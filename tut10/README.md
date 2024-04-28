@@ -73,9 +73,10 @@ T2 is Bob's transaction
 |                    | R(B), B = 3000    | 3000                             |
 |                    | B = B - 500, W(B) | 2500                             |
 
+```
 T1: R(B) W(B)
-
 T2:           R(B) W(B)
+```
 
 The above schedule is a **Serial schedule**
 A serial schedula: each scheduled transaction is executed to completion before starting the next: **non-interleaving**
@@ -94,9 +95,10 @@ However, interleaving schedules are **potentially dangerous**. Consider the foll
 | B = B + 2000, W(B) |                   | 3000                             |
 |                    | B = B - 500, W(B) | 500                              |
 
+```
 T1: R(B)      W(B)
-
 T2:      R(B)      W(B)
+```
 
 This caused the balance to be $500! This is because Bob's withdrawal transaction 
 completely overwrote Adam's deposit transaction.
